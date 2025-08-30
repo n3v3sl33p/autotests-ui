@@ -88,21 +88,6 @@ class CreateCoursePage(BasePage):
             "create-course-exercises-empty-view-description-text"
         )
 
-        # Заголовок упражнения и кнопка удаления
-        self.exercise_title = self.page.get_by_test_id(
-            "create-course-exercise-{}-box-toolbar-subtitle-text"
-        )
-        self.delete_exercise_button = self.page.get_by_test_id(
-            "create-course-exercise-0-box-toolbar-delete-exercise-button"
-        )
-
-        self.exercise_title_input = self.page.get_by_test_id(
-            "create-course-exercise-form-title-{}-input"
-        )
-        self.exercise_description_input = self.page.get_by_test_id(
-            "create-course-exercise-form-description-{}-input"
-        )
-
     def check_visible_create_course_title(self):
         expect(self.create_course_title).to_be_visible()
         expect(self.create_course_title).to_have_text("Create course")
