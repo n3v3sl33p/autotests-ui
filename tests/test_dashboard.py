@@ -13,8 +13,8 @@ def test_dashboard_displaying(dashboard_page_with_state: DashboardPage):
     dashboard_page_with_state.navbar.check_visible("username")
     dashboard_page_with_state.sidebar.check_visible()
 
-    dashboard_page_with_state.check_visible_dashboard_title()
-    dashboard_page_with_state.check_visible_scores_widget()
-    dashboard_page_with_state.check_visible_courses_widget()
-    dashboard_page_with_state.check_visible_students_widget()
-    dashboard_page_with_state.check_visible_activities_widget()
+    dashboard_page_with_state.toolbar.check_visible()
+    dashboard_page_with_state.scores_chart.check_visible()
+    dashboard_page_with_state.courses_chart.check_visible()
+    dashboard_page_with_state.students_chart.check_visible()
+    dashboard_page_with_state.activities_chart.check_visible()
