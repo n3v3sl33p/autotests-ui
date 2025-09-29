@@ -1,16 +1,20 @@
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 from components.base_component import BaseComponent
+from elements.text import Text
 
 
 class NavbarComponent(BaseComponent):
     def __init__(self, page: Page) -> None:
         super().__init__(page)
 
-        self.title = page.get_by_test_id("navigation-navbar-app-title-text")
-        self.welcome_text = page.get_by_test_id("navigation-navbar-welcome-title-text")
+        self.title = Text(page, "navigation-navbar-app-title-text", "App title")
+        self.welcome_text = Text(
+            page, "navigation-navbar-welcome-title-text", "Welcome text"
+        )
 
     def check_visible(self, name: str):
-        expect(self.title).to_be_visible()
-        expect(self.title).to_have_text("UI Course")
-        expect(self.welcome_text).to_be_visible()
-        expect(self.welcome_text).to_have_text(f"Welcome, {name}!")
+        self.title.check_visible()
+        self.title.check_have_text("UI Course")
+
+        self.welcome_text.check_visible()
+        self.welcome_text.check_have_text(f"Welcome, {name}!")

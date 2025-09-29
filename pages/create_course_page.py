@@ -1,4 +1,7 @@
 from playwright.sync_api import Page, expect
+from components.courses.create_course_exercise_form_component import (
+    CreateCourseExerciseFormComponent,
+)
 from components.courses.create_course_exercises_toolbar_component import (
     CreateCourseExercisesToolbarComponent,
 )
@@ -20,6 +23,9 @@ class CreateCoursePage(BasePage):
         self.image_upload_widget = ImageUploadWidgetComponent(
             page, "create-course-preview"
         )
+
+        self.create_exercise_form = CreateCourseExerciseFormComponent(page)
+
         self.navbar = NavbarComponent(page)
         self.create_course_form = CreateCourseFormComponent(page)
         self.exercises_toolbar = CreateCourseExercisesToolbarComponent(page)
@@ -30,37 +36,3 @@ class CreateCoursePage(BasePage):
             "There is no exercises",
             'Click on "Create exercise" button to create new exercise',
         )
-
-    def click_delete_exercise_button(self, index: int):
-        self.page.get_by_test_id(
-            f"create-course-exercise-{index}-box-toolbar-delete-exercise-button"
-        ).click()
-
-    def check_visible_create_exercise_form(
-        self, index: int, title: str, description: str
-    ):
-        expect(
-            self.page.get_by_test_id(f"create-course-exercise-form-title-{index}-input")
-        ).to_be_visible()
-        expect(
-            self.page.get_by_test_id(f"create-course-exercise-form-title-{index}-input")
-        ).to_have_value(title)
-
-        expect(
-            self.page.get_by_test_id(
-                f"create-course-exercise-form-description-{index}-input"
-            )
-        ).to_be_visible()
-        expect(
-            self.page.get_by_test_id(
-                f"create-course-exercise-form-description-{index}-input"
-            )
-        ).to_have_value(description)
-
-    def fill_create_exercise_form(self, index: int, title: str, description: str):
-        self.page.get_by_test_id(
-            f"create-course-exercise-form-title-{index}-input"
-        ).fill(title)
-        self.page.get_by_test_id(
-            f"create-course-exercise-form-description-{index}-input"
-        ).fill(description)

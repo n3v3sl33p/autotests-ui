@@ -1,6 +1,8 @@
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 
 from components.base_component import BaseComponent
+from elements.icon import Icon
+from elements.text import Text
 
 
 class EmptyViewComponent(BaseComponent):
@@ -9,15 +11,17 @@ class EmptyViewComponent(BaseComponent):
 
         self.component_name = component_name
 
-        self.icon = page.get_by_test_id(f"{component_name}-empty-view-icon")
-        self.title = page.get_by_test_id(f"{component_name}-empty-view-title-text")
-        self.description = page.get_by_test_id(
-            f"{component_name}-empty-view-description-text"
+        self.icon = Icon(page, f"{component_name}-empty-view-icon", "icon")
+        self.title = Text(page, f"{component_name}-empty-view-title-text", "text")
+        self.description = Text(
+            page, f"{component_name}-empty-view-description-text", "text"
         )
 
     def check_visible(self, title: str, description: str):
-        expect(self.icon).to_be_visible()
-        expect(self.title).to_be_visible()
-        expect(self.title).to_have_text(title)
-        expect(self.description).to_be_visible()
-        expect(self.description).to_have_text(description)
+        self.icon.check_visible()
+
+        self.title.check_visible()
+        self.title.check_have_text(title)
+
+        self.description.check_visible()
+        self.description.check_have_text(description)
