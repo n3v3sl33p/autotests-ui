@@ -7,16 +7,15 @@ class BaseElement:
         self.locator = locator
         self.name = name
 
-    def get_locator(self, **kwargs) -> Locator:
+    def get_locator(self, nth: int = 0, **kwargs) -> Locator:
         locator = self.locator.format(**kwargs)
+        return self.page.get_by_test_id(locator).nth(nth)
 
-        return self.page.get_by_test_id(locator)
+    def click(self, nth: int = 0, **kwargs):
+        self.get_locator(nth, **kwargs).click()
 
-    def click(self, **kwargs):
-        self.get_locator(**kwargs).click()
+    def check_visible(self, nth: int = 0, **kwargs):
+        expect(self.get_locator(nth, **kwargs)).to_be_visible()
 
-    def check_visible(self, **kwargs):
-        expect(self.get_locator(**kwargs)).to_be_visible()
-
-    def check_have_text(self, text: str, **kwargs):
-        expect(self.get_locator(**kwargs)).to_have_text(text)
+    def check_have_text(self, text: str, nth: int = 0, **kwargs):
+        expect(self.get_locator(nth, **kwargs)).to_have_text(text)

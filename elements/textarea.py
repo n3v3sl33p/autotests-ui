@@ -3,11 +3,11 @@ from elements.base_element import BaseElement
 
 
 class Textarea(BaseElement):
-    def get_locator(self, **kwargs) -> Locator:
-        return super().get_locator(**kwargs).locator("textarea").first
+    def get_locator(self, nth: int = 0, **kwargs) -> Locator:
+        return super().get_locator(nth, **kwargs).locator("textarea").first
 
-    def fill(self, value: str, **kwargs):
-        self.get_locator(**kwargs).fill(value)
+    def fill(self, value: str, nth: int = 0, **kwargs):
+        self.get_locator(nth, **kwargs).fill(value)
 
-    def check_have_value(self, value: str, **kwargs):
-        expect(self.get_locator(**kwargs)).to_have_value(value)
+    def check_have_value(self, value: str, nth: int = 0, **kwargs):
+        expect(self.get_locator(nth, **kwargs)).to_have_value(value)

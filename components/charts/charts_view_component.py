@@ -1,6 +1,8 @@
 from enum import Enum
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 from components.base_component import BaseComponent
+from elements.image import Image
+from elements.text import Text
 
 
 class ChartTypes(Enum):
@@ -9,6 +11,9 @@ class ChartTypes(Enum):
     PIE = "pie"
     SCATTER = "scatter"
 
+    def __str__(self) -> str:
+        return self.value
+
 
 class ChartViewComponent(BaseComponent):
     def __init__(self, page: Page, component_name: str, chart_type: ChartTypes) -> None:
@@ -16,10 +21,10 @@ class ChartViewComponent(BaseComponent):
         self.component_name = component_name
         self.chart_type = chart_type
 
-        self.title = page.get_by_test_id(f"{component_name}-widget-title-text")
-        self.chart = page.get_by_test_id(f"{component_name}-{chart_type}-chart")
+        self.title = Text(page, f"{component_name}-widget-title-text", "Title")
+        self.chart = Image(page, f"{component_name}-{chart_type}-chart", "Chart")
 
     def check_visible(self):
-        expect(self.title).to_be_visible()
-        expect(self.title).to_have_text(self.component_name.capitalize())
-        self.chart.is_visible()
+        self.title.check_visible()
+        self.title.check_have_text(self.component_name.capitalize())
+        self.chart.check_visible()

@@ -2,13 +2,11 @@ from elements.base_element import BaseElement, expect
 
 
 class Input(BaseElement):
-    def get_locator(self, **kwargs):
-        locator = self.locator.format(**kwargs)
+    def get_locator(self, nth: int = 0, **kwargs):
+        return super().get_locator(nth, **kwargs).locator("input")
 
-        return self.page.get_by_test_id(locator).locator("input")
+    def fill(self, value: str, nth: int = 0, **kwargs):
+        self.get_locator(nth, **kwargs).fill(value)
 
-    def fill(self, value: str, **kwargs):
-        self.get_locator(**kwargs).fill(value)
-
-    def check_have_value(self, value: str, **kwargs):
-        expect(self.get_locator(**kwargs)).to_have_value(value)
+    def check_have_value(self, value: str, nth: int = 0, **kwargs):
+        expect(self.get_locator(nth, **kwargs)).to_have_value(value)
