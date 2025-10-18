@@ -11,9 +11,9 @@ from elements.text import Text
 class ImageUploadWidgetComponent(BaseComponent):
     def __init__(self, page: Page, component_name: str) -> None:
         super().__init__(page)
-        self.component_name = component_name
+        self.component_name:str = component_name
 
-        self.image_empty_view = EmptyViewComponent(page, "create-course-preview")
+        self.image_empty_view: EmptyViewComponent = EmptyViewComponent(page, "create-course-preview")
 
         self.preview_image = Image(
             page, f"{component_name}-image-upload-widget-preview-image", "Preview"
