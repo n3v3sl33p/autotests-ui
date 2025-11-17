@@ -1,3 +1,4 @@
+import allure
 from playwright.sync_api import Page
 from components.base_component import BaseComponent
 from elements.input import Input
@@ -9,19 +10,12 @@ class CreateCourseFormComponent(BaseComponent):
         super().__init__(page)
 
         self.title_input = Input(page, "create-course-form-title-input", "Title")
-        self.estimated_time_input = Input(
-            page, "create-course-form-estimated-time-input", "Estimated time"
-        )
-        self.description_input = Textarea(
-            page, "create-course-form-description-input", "Description"
-        )
-        self.max_score_input = Input(
-            page, "create-course-form-max-score-input", "Max score"
-        )
-        self.min_score_input = Input(
-            page, "create-course-form-min-score-input", "Min score"
-        )
+        self.estimated_time_input = Input(page, "create-course-form-estimated-time-input", "Estimated time")
+        self.description_input = Textarea(page, "create-course-form-description-input", "Description")
+        self.max_score_input = Input(page, "create-course-form-max-score-input", "Max score")
+        self.min_score_input = Input(page, "create-course-form-min-score-input", "Min score")
 
+    @allure.step("Fill 'Create course form'")
     def fill(
         self,
         title: str,
@@ -36,6 +30,7 @@ class CreateCourseFormComponent(BaseComponent):
         self.max_score_input.fill(max_score)
         self.min_score_input.fill(min_score)
 
+    @allure.step('Checking that "Create course from" is visible')
     def check_visible(
         self,
         title: str,

@@ -1,4 +1,5 @@
 from enum import Enum
+import allure
 from playwright.sync_api import Page
 from components.base_component import BaseComponent
 from elements.image import Image
@@ -24,6 +25,7 @@ class ChartViewComponent(BaseComponent):
         self.title = Text(page, f"{component_name}-widget-title-text", "Title")
         self.chart = Image(page, f"{component_name}-{chart_type}-chart", "Chart")
 
+    @allure.step('Checking visible "Chart view"')
     def check_visible(self):
         self.title.check_visible()
         self.title.check_have_text(self.component_name.capitalize())

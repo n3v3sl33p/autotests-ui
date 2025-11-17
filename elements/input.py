@@ -1,12 +1,20 @@
+import allure
 from elements.base_element import BaseElement, expect
 
 
 class Input(BaseElement):
+
+    @property
+    def type_of(self) -> str:
+        return "input"
+
     def get_locator(self, nth: int = 0, **kwargs):
         return super().get_locator(nth, **kwargs).locator("input")
 
     def fill(self, value: str, nth: int = 0, **kwargs):
-        self.get_locator(nth, **kwargs).fill(value)
+        with allure.step(f'Fill {self.type_of} "{self.name}" to value "{value}"'):
+            self.get_locator(nth, **kwargs).fill(value)
 
     def check_have_value(self, value: str, nth: int = 0, **kwargs):
-        expect(self.get_locator(nth, **kwargs)).to_have_value(value)
+        with allure.step(f'Checking that {self.type_of} "{self.name}" has a value'):
+            expect(self.get_locator(nth, **kwargs)).to_have_value(value)
