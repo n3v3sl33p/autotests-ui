@@ -10,6 +10,7 @@ from tools.allure.epics import AllureEpic
 from tools.allure.features import AllureFeature
 from tools.allure.stories import AllureStory
 from tools.allure.tags import AllureTag
+from tools.routes import AppRoute
 
 
 @pytest.mark.regression
@@ -32,7 +33,7 @@ class TestAuthorization:
     )
     @allure.title("User login with wrong email or password")
     def test_wrong_email_or_password_authorization(self, login_page: LoginPage, email: str, password: str):
-        login_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login")
+        login_page.visit(AppRoute.LOGIN)
         login_page.form.fill(email=email, password=password)
         login_page.click_login_button()
         login_page.check_visible_wrong_email_or_password_alert()
@@ -41,10 +42,10 @@ class TestAuthorization:
     def test_successful_authorization(
         self, registration_page: RegistrationPage, dashboard_page: DashboardPage, login_page: LoginPage
     ):
-        registration_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration")
+        registration_page.visit(AppRoute.REGISTRATION)
 
         registration_page.form.fill("aboba@mail.com", "artem", "123")
-        registration_page.click_registration_button()
+        registration_page.registration_button.click()
 
         dashboard_page.toolbar.check_visible()
         dashboard_page.navbar.check_visible("artem")
@@ -62,6 +63,6 @@ class TestAuthorization:
     def test_navigate_from_authorization_to_registration(
         self, login_page: LoginPage, registration_page: RegistrationPage
     ):
-        login_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login")
+        login_page.visit(AppRoute.LOGIN)
         login_page.click_registration_link()
         registration_page.form.check_visible("", "", "")

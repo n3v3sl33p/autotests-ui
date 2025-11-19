@@ -15,7 +15,7 @@ class SidebarListItemComponent(BaseComponent):
         self.text = Text(page, f"{component_name}-drawer-list-item-title-text", "text")
         self.button = Button(page, f"{component_name}-drawer-list-item-button", "button")
 
-    @allure.step('Check visible "{title}" sidebar list item')
+    @allure.step("Check visible sidebar list item")
     def check_visible(self):
         self.icon.check_visible()
 
