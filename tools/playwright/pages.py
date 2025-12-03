@@ -4,17 +4,19 @@ from typing import Any, Generator
 from playwright.sync_api._generated import Page
 import allure
 
-from playwright.sync_api import Playwright, Page
+from playwright.sync_api import BrowserType, Playwright, Page
 from pydantic import FilePath
 from config import settings
 
 
 def create_browser_page(
-    playwright: Playwright, test_name: str, browser_state: FilePath | None = None
+    playwright: Playwright, test_name: str,browser_type:str,browser_state: FilePath | None = None, 
 ) -> Generator[Page, Any, None]:
-    browser = playwright.chromium.launch(headless=settings.headless)
+    browser = playwright[browser_type].launch(headless=settings.headless)
     context = browser.new_context(
-        base_url=settings.base_url, record_video_dir=settings.videos_dir, storage_state=browser_state
+        base_url=settings.base_url,
+        #  record_video_dir=settings.videos_dir,
+         storage_state=browser_state
     )
     context.tracing.start(snapshots=True, screenshots=True, sources=True)
     page = context.new_page()

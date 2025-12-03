@@ -66,3 +66,16 @@ class TestAuthorization:
         login_page.visit(AppRoute.LOGIN)
         login_page.click_registration_link()
         registration_page.form.check_visible("", "", "")
+
+def test_firefox_simple(playwright):
+    browser = playwright.firefox.launch(headless=False)
+    page = browser.new_page()
+    
+    print("Navigating to page...")
+    page.goto("https://playwright.dev/", timeout=60000)
+    print("Page loaded!")
+    
+    assert page.title() != ""
+    
+    browser.close()
+
