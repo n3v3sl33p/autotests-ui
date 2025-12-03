@@ -22,8 +22,9 @@ class TestData(BaseModel):
 
 
 class Settings(BaseSettings):
-
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", env_nested_delimiter="__")
+    model_config = SettingsConfigDict(
+        env_file=".env", env_file_encoding="utf-8", env_nested_delimiter="__"
+    )
 
     app_url: HttpUrl
     headless: bool
@@ -32,6 +33,7 @@ class Settings(BaseSettings):
     test_data: TestData
     videos_dir: DirectoryPath
     tracing_dir: DirectoryPath
+    allure_results_dir: DirectoryPath
     browser_state_file: FilePath
 
     @property
@@ -42,14 +44,19 @@ class Settings(BaseSettings):
     def initialize(cls):
         videos_dir = Path("./videos")
         tracing_dir = Path("./tracing")
+        allure_results_dir = Path("./allure-results")
         browser_state_file = Path("browser-state.json")
 
         videos_dir.mkdir(exist_ok=True)
         tracing_dir.mkdir(exist_ok=True)
+        allure_results_dir.mkdir(exist_ok=True)
         browser_state_file.touch(exist_ok=True)
 
         return Settings(
-            videos_dir=videos_dir, tracing_dir=tracing_dir, browser_state_file=browser_state_file
+            videos_dir=videos_dir,
+            tracing_dir=tracing_dir,
+            allure_results_dir=allure_results_dir,
+            browser_state_file=browser_state_file,
         )  # pyright: ignore[reportCallIssue]
 
 

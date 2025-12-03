@@ -1,1 +1,1 @@
-pytest_plugins = ("fixtures.browser", "fixtures.pages")
+pytest_plugins = ("fixtures.browser", "fixtures.pages", "fixtures.allure")
