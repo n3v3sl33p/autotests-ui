@@ -37,7 +37,7 @@ jobs:
 
             - name: Run Playwright tests with pytest and generate Allure results
               run: |
-                  uv run pytest -m regression --alluredir=allure-results --numprocesses 2
+                  uv run pytest -m regression --alluredir=allure-results
 
             - name: Install Allure CLI
               run: |
