@@ -17,7 +17,6 @@ def create_browser_page(
     browser = playwright[browser_type].launch(headless=settings.headless)
     context = browser.new_context(
         base_url=settings.base_url,
-        # record_video_dir=settings.videos_dir,
         storage_state=browser_state,
     )
     context.tracing.start(snapshots=True, screenshots=True, sources=True)
