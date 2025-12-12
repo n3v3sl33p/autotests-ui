@@ -1,58 +1,78 @@
 name: UI tests
 
 on:
-    push:
-        branches:
-            - main
-    pull_request:
-        branches:
-            - main
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
 
 jobs:
-    run-tests:
-        runs-on: ubuntu-latest
-        env:
-            APP_URL: ${{ vars.APP_URL }}
-            BROWSERS: ${{ vars.BROWSERS }}
-            HEADLESS: ${{ vars.HEADLESS }}
-            TEST_DATA__IMAGE_PNG_FILE: ${{ vars.TEST_DATA__IMAGE_PNG_FILE }}
-            TEST_USER__EMAIL: ${{ vars.TEST_USER__EMAIL }}
-            TEST_USER__PASSWORD: ${{ vars.TEST_USER__PASSWORD }}
-            TEST_USER__USERNAME: ${{ vars.TEST_USER__USERNAME }}
+  run-tests:
+    runs-on: ubuntu-latest
+    env:
+      APP_URL: ${{ vars.APP_URL }}
+      BROWSERS: ${{ vars.BROWSERS }}
+      HEADLESS: ${{ vars.HEADLESS }}
+      TEST_DATA__IMAGE_PNG_FILE: ${{ vars.TEST_DATA__IMAGE_PNG_FILE }}
+      TEST_USER__EMAIL: ${{ vars.TEST_USER__EMAIL }}
+      TEST_USER__PASSWORD: ${{ vars.TEST_USER__PASSWORD }}
+      TEST_USER__USERNAME: ${{ vars.TEST_USER__USERNAME }}
 
-        steps:
-            - name: Check out repository
-              uses: actions/checkout@v4
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
 
-            - name: Set up Python
-              uses: actions/setup-python@v5
-              with:
-                  python-version: "3.11"
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-            - name: Install dependencies
-              run: |
-                  pip install uv
-                  uv sync
-                  uv run playwright install --with-deps
+      - name: Install dependencies
+        run: |
+          pip install uv
+          uv sync
+          uv run playwright install --with-deps
 
-            - name: Run Playwright tests with pytest and generate Allure results
-              run: |
-                  uv run pytest -m regression --alluredir=allure-results
+      - name: Run Playwright tests with pytest and generate Allure results
+        run: |
+          uv run pytest -m regression --alluredir=allure-results
 
-            - name: Install Allure CLI
-              run: |
-                  sudo apt-get update
-                  sudo apt-get install -y openjdk-17-jre-headless
-                  npm install -g allure-commandline
+      - name: Upload allure-results artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results
 
-            - name: Generate Allure report
-              run: |
-                  allure generate allure-results -o allure-history --clean
+  publish-report:
+    runs-on: ubuntu-latest
+    needs: run-tests
 
-            - name: Deploy report to Github Pages
-              if: always()
-              uses: peaceiris/actions-gh-pages@v4
-              with:
-                  github_token: ${{ secrets.GITHUB_TOKEN }}
-                  publish_branch: gh-pages
-                  publish_dir: allure-history
+    steps:
+      - name: Download allure-results artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results
+
+      - name: Install Allure CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openjdk-17-jre-headless
+          npm install -g allure-commandline
+
+      - name: Generate Allure report
+        run: |
+          allure generate allure-results -o allure-history --clean
+
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
