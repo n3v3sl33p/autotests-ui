@@ -12,13 +12,13 @@ jobs:
     run-tests:
         runs-on: ubuntu-latest
         env:
-            APP_URL: ${{ variables.APP_URL }}
-            BROWSERS: ${{ variables.BROWSERS }}
-            HEADLESS: ${{ variables.HEADLESS }}
-            TEST_DATA__IMAGE_PNG_FILE: ${{ variables.TEST_DATA__IMAGE_PNG_FILE }}
-            TEST_USER__EMAIL: ${{ variables.TEST_USER__EMAIL }}
-            TEST_USER__PASSWORD: ${{ variables.TEST_USER__PASSWORD }}
-            TEST_USER__USERNAME: ${{ variables.TEST_USER__USERNAME }}
+            APP_URL: ${{ vars.APP_URL }}
+            BROWSERS: ${{ vars.BROWSERS }}
+            HEADLESS: ${{ vars.HEADLESS }}
+            TEST_DATA__IMAGE_PNG_FILE: ${{ vars.TEST_DATA__IMAGE_PNG_FILE }}
+            TEST_USER__EMAIL: ${{ vars.TEST_USER__EMAIL }}
+            TEST_USER__PASSWORD: ${{ vars.TEST_USER__PASSWORD }}
+            TEST_USER__USERNAME: ${{ vars.TEST_USER__USERNAME }}
 
         steps:
             - name: Check out repository
