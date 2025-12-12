@@ -1,0 +1,68 @@
+INFO     BASE_PAGE:base_page.py:16 Open the url: #/courses/create
+INFO     INPUT:input.py:19 Fill input "Title" to value "test1"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "create-course-form-title-input" at index "0"
+INFO     INPUT:input.py:19 Fill input "Estimated time" to value "1h"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "create-course-form-estimated-time-input" at index "0"
+INFO     TEXTAREA:textarea.py:16 Fill None "Description" to value "test_description"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "create-course-form-description-input" at index "0"
+INFO     INPUT:input.py:19 Fill input "Max score" to value "100"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "create-course-form-max-score-input" at index "0"
+INFO     INPUT:input.py:19 Fill input "Min score" to value "10"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "create-course-form-min-score-input" at index "0"
+INFO     FILE_INPUT:file_input.py:16 Set file "testdata/files/image.png" to the file input "Upload"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "create-course-preview-image-upload-widget-input" at index "0"
+INFO     BASE_ELEMENT:base_element.py:32 Clicking button "Create course"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "create-course-toolbar-create-course-button" at index "0"
+INFO     BASE_PAGE:base_page.py:26 Check current url
+INFO     BASE_ELEMENT:base_element.py:38 Checking that image "Preview" is visible
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "course-preview-image" at index "0"
+INFO     BASE_ELEMENT:base_element.py:38 Checking that text "Title" is visible
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "course-widget-title-text" at index "0"
+INFO     BASE_ELEMENT:base_element.py:44 Checking that text "Title" has text "test1"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "course-widget-title-text" at index "0"
+INFO     BASE_ELEMENT:base_element.py:38 Checking that text "Max score" is visible
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "course-max-score-info-row-view-text" at index "0"
+INFO     BASE_ELEMENT:base_element.py:44 Checking that text "Max score" has text "Max score: 100"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "course-max-score-info-row-view-text" at index "0"
+INFO     BASE_ELEMENT:base_element.py:38 Checking that text "Min score" is visible
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "course-min-score-info-row-view-text" at index "0"
+INFO     BASE_ELEMENT:base_element.py:44 Checking that text "Min score" has text "Min score: 10"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "course-min-score-info-row-view-text" at index "0"
+INFO     BASE_ELEMENT:base_element.py:38 Checking that text "Estimated time" is visible
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "course-estimated-time-info-row-view-text" at index "0"
+INFO     BASE_ELEMENT:base_element.py:44 Checking that text "Estimated time" has text "Estimated time: 1h"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "course-estimated-time-info-row-view-text" at index "0"
+INFO     BASE_ELEMENT:base_element.py:32 Clicking button "Menu"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "course-view-menu-button" at index "0"
+INFO     BASE_ELEMENT:base_element.py:32 Clicking button "Edit"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "course-view-edit-menu-item" at index "0"
+INFO     INPUT:input.py:19 Fill input "Title" to value "new_title"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "create-course-form-title-input" at index "0"
+INFO     INPUT:input.py:19 Fill input "Estimated time" to value "2h"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "create-course-form-estimated-time-input" at index "0"
+INFO     TEXTAREA:textarea.py:16 Fill None "Description" to value "new_description"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "create-course-form-description-input" at index "0"
+INFO     INPUT:input.py:19 Fill input "Max score" to value "200"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "create-course-form-max-score-input" at index "0"
+INFO     INPUT:input.py:19 Fill input "Min score" to value "20"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "create-course-form-min-score-input" at index "0"
+INFO     BASE_ELEMENT:base_element.py:32 Clicking button "Create course"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "create-course-toolbar-create-course-button" at index "0"
+INFO     BASE_ELEMENT:base_element.py:38 Checking that image "Preview" is visible
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "course-preview-image" at index "0"
+INFO     BASE_ELEMENT:base_element.py:38 Checking that text "Title" is visible
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "course-widget-title-text" at index "0"
+INFO     BASE_ELEMENT:base_element.py:44 Checking that text "Title" has text "new_title"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "course-widget-title-text" at index "0"
+INFO     BASE_ELEMENT:base_element.py:38 Checking that text "Max score" is visible
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "course-max-score-info-row-view-text" at index "0"
+INFO     BASE_ELEMENT:base_element.py:44 Checking that text "Max score" has text "Max score: 200"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "course-max-score-info-row-view-text" at index "0"
+INFO     BASE_ELEMENT:base_element.py:38 Checking that text "Min score" is visible
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "course-min-score-info-row-view-text" at index "0"
+INFO     BASE_ELEMENT:base_element.py:44 Checking that text "Min score" has text "Min score: 20"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "course-min-score-info-row-view-text" at index "0"
+INFO     BASE_ELEMENT:base_element.py:38 Checking that text "Estimated time" is visible
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "course-estimated-time-info-row-view-text" at index "0"
+INFO     BASE_ELEMENT:base_element.py:44 Checking that text "Estimated time" has text "Estimated time: 2h"
+INFO     BASE_ELEMENT:base_element.py:26 Getting locator with "course-estimated-time-info-row-view-text" at index "0"
