@@ -1,5 +1,4 @@
 from enum import Enum
-from typing import Self
 from pydantic import BaseModel, DirectoryPath, EmailStr, FilePath, HttpUrl
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pathlib import Path
